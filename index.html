@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flippin Cards Template</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+ <div id="app">
+  <input type="text" placeholder="Enter question here" v-model="newQuestion">
+  <input type="text" placeholder="Enter answer here" v-model="newAnswer"> <br>
+  <input type="radio" name="select_subject" value="history" v-model="newSubject" /> History
+  <input type="radio" name="select_subject" value="science" v-model="newSubject" /> Science
+  <input type="radio" name="select_subject" value="math" v-model="newSubject" /> Math  <br>
+  <input type="submit" value="Submit" @click.prevent="newCard">
+    <div id="flashcards-app">
+        <div class="card" v-for="(card,index) in cards"  @click="flippedCard(card,index)">
+          <div class="top" :class="[card.category]" ></div>
+          <div class="side1" :class="{hide:card.flipped}"  >
+            <h1>{{card.question}}</h1>
+          </div>
+          <div class="side2" :class="{hide:!card.flipped}"  >
+            <h1>{{card.answer}}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.min.js"></script>
+      <script src="app.js"></script>
+</body>
+</html>
